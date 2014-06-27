@@ -19,4 +19,4 @@ def done_work():
     return {'res': True, 'msg': 'look out for potatoes'}
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=80)
