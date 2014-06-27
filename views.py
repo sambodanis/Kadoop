@@ -2,7 +2,7 @@ from flask import Blueprint, request, redirect, render_template, url_for, jsonif
 from flask.views import MethodView
 
 from flask.ext.mongoengine.wtf import model_form
-from server.models import Kindle
+from Kadoop.models import Kindle
 from Kadoop import app
 import json
 import datetime

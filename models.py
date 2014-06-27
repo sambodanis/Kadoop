@@ -1,6 +1,6 @@
 from flask import url_for
 
-from kadoop import db
+from Kadoop import db
 
 
 class Kindle(db.Document):
