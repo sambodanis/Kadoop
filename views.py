@@ -36,7 +36,7 @@ class WorkAPI(MethodView):
 class CodeAPI(MethodView):
 
     def get(self):
-        return jsonify({'res': True, 'code': '1+2'})
+        return jsonify({'res': True, 'code': 'var x = 1+2'})
 
     def post(self):
         data = request.files
