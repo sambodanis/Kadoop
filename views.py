@@ -11,14 +11,14 @@ import datetime
 class WorkAPI(MethodView):
 
     def get(self):
-        data = request.form
-        print data, len(request.values), request.values, 'get!'
+        data = request.values
+        print data
         return jsonify({'res': True})
 
     def post(self):
 
-        data = request.form
-        print data, request.values, 'post!'
+        data = request.values
+        print data
         return jsonify({'res': True})
 
 
