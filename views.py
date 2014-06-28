@@ -30,7 +30,7 @@ class WorkAPI(MethodView):
             response_object = {
                 'res': True, 'data': data, 'code': code, 'work_id': work_id}
             work_piece.taken = True
-            # work_piece.save()
+            work_piece.save()
         else:
             response_object = {
                 'res': False
@@ -89,9 +89,18 @@ class KindleAPI(MethodView):
         return jsonify({'res': True, 'active': len(Kindle.objects())})
 
     def post(self):
-        print 'v', request.values
-        print 'f', request.files
-        print 'j', request.get_json(force=True)
+        data = request.get_json(force=True)
+        if 'result' not in data or 'work_id' not in data:
+            return jsonify({'res': False, 'msg': 'No work or work_id included'})
+
+        work_id = data['work_id']
+        data = data['result']
+        work = Work.objects(id=work_id)
+        work.data = work
+        work.taken = True
+        work.done = True
+        work.save()
+
         return jsonify({'res': True, 'msg': 'work recieved'})
 
 app.add_url_rule('/work/', view_func=WorkAPI.as_view('work'))
