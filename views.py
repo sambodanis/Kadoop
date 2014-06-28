@@ -19,7 +19,9 @@ class WorkAPI(MethodView):
             active = data['active']
             if not active:
                 response_object = {
-                    'res': False
+                    'res': False,
+                    'code': "",
+                    'data': []
                 }
         work_piece = Work.objects(taken=False).first()
         if work_piece:
@@ -103,8 +105,11 @@ class KindleAPI(MethodView):
 
         work_id = data['work_id']
         data = data['result']
-        work = Work.objects(id=work_id)[0]
-        work.data = work
+        print work_id, data
+        work = Work.objects(id=work_id)
+        print work
+        work = work[0]
+        work.data = data
         work.taken = True
         work.done = True
         work.save()
