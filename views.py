@@ -17,7 +17,7 @@ class WorkAPI(MethodView):
         if 'id' in data and 'active' in data:
             uuid = data['id']
             active = data['active']
-            if not active:
+            if active == False:
                 response_object = {
                     'res': False,
                     'code': "",
