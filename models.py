@@ -15,5 +15,6 @@ class Code(db.Document):
 class Work(db.Document):
     data = db.ListField(db.DynamicField())
     code = db.ReferenceField(Code)
+    kindle = db.ReferenceField(Kindle)
     taken = db.BooleanField()
     done = db.BooleanField()

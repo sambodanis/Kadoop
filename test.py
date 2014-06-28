@@ -19,8 +19,8 @@ code_maps = [{'data': 'data.json', 'code': 'lambda x: x + 1'}]
 
 def add_device(device_id):
     device_data = {'id': device_id}
-    r = requests.post(url=url + work_path,
-                      params=device_data, headers=json_header)
+    r = requests.get(url=url + work_path,
+                     params=device_data, headers=json_header)
     print r.text
 
 
@@ -44,4 +44,4 @@ def add_code(code_map):
 
 
 map(add_device, device_ids)
-map(add_code, code_maps)
+# map(add_code, code_maps)
