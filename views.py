@@ -106,17 +106,17 @@ class KindleAPI(MethodView):
         work_id = data['work_id']
         data = data['result']
         print work_id, data
-        work_objects = filter(
-            lambda x: str(x.id) == work_id, Work.objects())[0]
-        print work_objects
-        for o in work_objects:
+        # work_objects = filter(
+        #     lambda x: str(x.id) == work_id, Work.objects())[0]
+        # print work_objects
+        for o in Work.objects():
             print o.id
-        work = work_objects[0]
+        # work = work_objects[0]
 
-        work.data = data
-        work.taken = True
-        work.done = True
-        work.save()
+        # work.data = data
+        # work.taken = True
+        # work.done = True
+        # work.save()
 
         return jsonify({'res': True, 'msg': 'work recieved'})
 
