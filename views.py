@@ -13,6 +13,14 @@ import datetime
 class WorkAPI(MethodView):
 
     def get(self):
+        data = request.values
+        if 'id' in data and 'active' in data:
+            uuid = data['id']
+            active = data['active']
+            if not active:
+                response_object = {
+                    'res': False
+                }
         work_piece = Work.objects(taken=False).first()
         if work_piece:
             data = work_piece.data
@@ -95,7 +103,7 @@ class KindleAPI(MethodView):
 
         work_id = data['work_id']
         data = data['result']
-        work = Work.objects(id=work_id)
+        work = Work.objects(id=work_id)[0]
         work.data = work
         work.taken = True
         work.done = True
