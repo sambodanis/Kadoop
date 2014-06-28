@@ -50,7 +50,13 @@ class CodeAPI(MethodView):
         return jsonify({'res': True, 'msg': 'code uploaded'})
 
 
+class KindleAPI(MethodView):
+
+    def get(self):
+        return jsonify({'res': True, 'Active': len(Kindle.objects())})
+
 # work_queue = Queue()
 app.add_url_rule('/work/', view_func=WorkAPI.as_view('work'))
 app.add_url_rule('/code/', view_func=CodeAPI.as_view('code'))
+app.add_url_rule('/kindle/', view_func=KindleAPI.as_view('kindle'))
 # app.add_url_rule('/purchases/', view_func=PurchaseAPI.as_view('purchases'))
