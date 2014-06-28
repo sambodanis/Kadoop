@@ -37,7 +37,7 @@ class WorkAPI(MethodView):
 class CodeAPI(MethodView):
 
     def get(self):
-        return jsonify({'res': True, 'code': 'console.log(\'hello\')'})
+        return jsonify({'res': True, 'code': '1+2'})
 
     def post(self):
         data = request.get_json(force=True)
@@ -49,8 +49,8 @@ class CodeAPI(MethodView):
         # work_queue.put()
         return jsonify({'res': True, 'msg': 'code uploaded'})
 
-# work_queue = Queue()
 
+# work_queue = Queue()
 app.add_url_rule('/work/', view_func=WorkAPI.as_view('work'))
 app.add_url_rule('/code/', view_func=CodeAPI.as_view('code'))
 # app.add_url_rule('/purchases/', view_func=PurchaseAPI.as_view('purchases'))

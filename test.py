@@ -4,8 +4,8 @@ import json
 
 json_header = {'content-type': 'application/json'}
 
-# url = 'http://ec2-54-183-120-129.us-west-1.compute.amazonaws.com:5000/'
-url = 'http://localhost:5000/'
+url = 'http://ec2-54-183-120-129.us-west-1.compute.amazonaws.com:5000/'
+# url = 'http://localhost:5000/'
 work_path = 'work/'
 code_path = 'code/'
 
