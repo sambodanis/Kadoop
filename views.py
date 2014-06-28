@@ -12,7 +12,7 @@ class WorkAPI(MethodView):
 
     def get(self):
         data = request.form
-        print data, request.data, 'get!'
+        print data, len(request.data), 'get!'
         return jsonify({'res': True})
 
     def post(self):
