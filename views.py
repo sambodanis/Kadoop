@@ -36,20 +36,22 @@ class WorkAPI(MethodView):
 class CodeAPI(MethodView):
 
     def get(self):
-        return jsonify({'res': True, 'code': 'var x = 1+2'})
+        return jsonify({'res': True, 'code': 'function(args) {return args * args}', 'data': [5, 6]})
 
     def post(self):
-        data = request.files
-        print data
-        data = data['data'].read()
-        print json.loads(data)
-        # data = request.get_json(force=True)
-        # print data
+        try:
+            data = request.files
+            print data
+            data = data['data'].read()
+            data = json.loads(data)
+        except Exception, e:
+            return jsonify({'res': False, 'msg': 'No data or code included'})
 
         # if 'data' not in data or 'code' not in data:
         #     return jsonify({'res': False, 'msg': 'No data or code included'})
-        # work = Work(data=data['data'], code=data['code'], done=False)
-        # work.save()
+
+        work = Work(data=data['data'], code=data['code'], done=False)
+        work.save()
         return jsonify({'res': True, 'msg': 'code uploaded'})
 
 

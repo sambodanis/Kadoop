@@ -8,7 +8,12 @@ class Kindle(db.Document):
     active = db.BooleanField()
 
 
+class Code(db.Document):
+    code = db.StringField()
+
+
 class Work(db.Document):
     data = db.ListField(db.DynamicField())
-    code = db.StringField()
+    code = db.ReferenceField(Code)
+    taken = db.BooleanField()
     done = db.BooleanField()
