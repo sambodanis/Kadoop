@@ -6,7 +6,6 @@ from flask.ext.mongoengine.wtf import model_form
 from Kadoop.models import Kindle, Work
 from Kadoop import app
 
-# from Queue import Queue
 import json
 import datetime
 
@@ -40,13 +39,17 @@ class CodeAPI(MethodView):
         return jsonify({'res': True, 'code': '1+2'})
 
     def post(self):
-        data = request.get_json(force=True)
+        data = request.files
         print data
-        if 'data' not in data or 'code' not in data:
-            return jsonify({'res': False, 'msg': 'No data or code included'})
-        work = Work(data=data['data'], code=data['code'], done=False)
-        work.save()
-        # work_queue.put()
+        data = data['data'].read()
+        print json.loads(data)
+        # data = request.get_json(force=True)
+        # print data
+
+        # if 'data' not in data or 'code' not in data:
+        #     return jsonify({'res': False, 'msg': 'No data or code included'})
+        # work = Work(data=data['data'], code=data['code'], done=False)
+        # work.save()
         return jsonify({'res': True, 'msg': 'code uploaded'})
 
 
@@ -55,8 +58,6 @@ class KindleAPI(MethodView):
     def get(self):
         return jsonify({'res': True, 'Active': len(Kindle.objects())})
 
-# work_queue = Queue()
 app.add_url_rule('/work/', view_func=WorkAPI.as_view('work'))
 app.add_url_rule('/code/', view_func=CodeAPI.as_view('code'))
 app.add_url_rule('/kindle/', view_func=KindleAPI.as_view('kindle'))
-# app.add_url_rule('/purchases/', view_func=PurchaseAPI.as_view('purchases'))
