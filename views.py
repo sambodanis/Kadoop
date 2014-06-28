@@ -106,7 +106,8 @@ class KindleAPI(MethodView):
         work_id = data['work_id']
         data = data['result']
         print work_id, data
-        work = Work.objects(id=work_id)
+        work = Work.objects()
+
         # for obj in work:
         #     if str(obj.id) == work_id:
         #         k = obj
