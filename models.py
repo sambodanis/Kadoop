@@ -5,7 +5,7 @@ from Kadoop import db
 
 class Kindle(db.Document):
     uuid = db.StringField()
-    active = db.BooleanField
+    active = db.BooleanField()
 
 
 # class Work(db.Document):
