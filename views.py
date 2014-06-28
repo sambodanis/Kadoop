@@ -86,7 +86,7 @@ class CodeAPI(MethodView):
 class KindleAPI(MethodView):
 
     def get(self):
-        return jsonify({'res': True, 'Active': len(Kindle.objects())})
+        return jsonify({'res': True, 'active': len(Kindle.objects())})
 
     def post(self):
         print request.values
