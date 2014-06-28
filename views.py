@@ -89,7 +89,9 @@ class KindleAPI(MethodView):
         return jsonify({'res': True, 'active': len(Kindle.objects())})
 
     def post(self):
-        print request.values
+        print 'v', request.values
+        print 'f', request.files
+        print 'j', request.get_json(force=True)
         return jsonify({'res': True, 'msg': 'work recieved'})
 
 app.add_url_rule('/work/', view_func=WorkAPI.as_view('work'))
