@@ -6,6 +6,7 @@ from flask.ext.mongoengine.wtf import model_form
 from Kadoop.models import Kindle, Work
 from Kadoop import app
 
+# from Queue import Queue
 import json
 import datetime
 
@@ -39,15 +40,16 @@ class CodeAPI(MethodView):
         return jsonify({'res': True, 'code': 'console.log(\'hello\')'})
 
     def post(self):
-        data = request.values
+        data = request.get_json(force=True)
+        print data
         if 'data' not in data or 'code' not in data:
             return jsonify({'res': False, 'msg': 'No data or code included'})
-        code = data['code']
-        data = map(int, data.getlist('data'))
-        work = Work(data=data, code=code, done=False)
+        work = Work(data=data['data'], code=data['code'], done=False)
         work.save()
+        # work_queue.put()
         return jsonify({'res': True, 'msg': 'code uploaded'})
 
+# work_queue = Queue()
 
 app.add_url_rule('/work/', view_func=WorkAPI.as_view('work'))
 app.add_url_rule('/code/', view_func=CodeAPI.as_view('code'))
